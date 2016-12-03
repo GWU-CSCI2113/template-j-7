@@ -16,6 +16,23 @@ class QuitActionListener implements ActionListener{
 
 }
 
+class helloActionListener implements ActionListener{
+
+	JLabel label;
+	String msg;
+
+	public helloActionListener(JLabel label) {
+		this.label = label;
+	}
+	public void actionPerformed(ActionEvent a) {
+
+		label.setText(a.getActionCommand());
+
+
+	}
+
+}
+
 class NewFrame extends JFrame {
 	// Note: Frame does not implement ActionListener anymore
 
@@ -23,6 +40,7 @@ class NewFrame extends JFrame {
 	private JButton quitB; // Quit button.
 	private JButton helloB, byeB; // Two silly buttons.
 	private JLabel msg;
+
 
 
 	// Constructor.
@@ -50,6 +68,7 @@ class NewFrame extends JFrame {
 		helloB.setBackground(Color.green);
 		cPane.add(helloB);
 
+
 		// "World" button
 		byeB = new JButton("Bye");
 		byeB.setBackground(Color.red);
@@ -57,6 +76,11 @@ class NewFrame extends JFrame {
 
 		msg = new JLabel("msg...");
 		cPane.add(msg);
+
+		helloActionListener listener = new helloActionListener(msg);
+		helloB.addActionListener(listener);
+		byeB.addActionListener(listener);
+
 
 		// Show the frame.
 		this.setVisible(true);

@@ -30,8 +30,14 @@ public class SlowWebServer {
 	private JTextArea textArea;
 
 	// Inner class for handling requests. It will still be able to access the outer class's GUI objects
-	class RequestHandler {
+	class RequestHandler implements Runnable {
 		Socket socket;
+
+		@Override
+		public void run() {
+			handleRequest();
+		}
+
 		public RequestHandler(Socket socket){
 			this.socket = socket;
 		}
@@ -132,7 +138,10 @@ public class SlowWebServer {
 				Socket socket = srv.accept();
 
 				RequestHandler handler = new RequestHandler(socket);
-				handler.handleRequest();
+				//handler.handleRequest();
+				Thread t = new Thread(handler);
+				t.start();
+
 
 			} // end-while
 

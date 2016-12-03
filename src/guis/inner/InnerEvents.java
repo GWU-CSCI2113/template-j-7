@@ -43,6 +43,14 @@ class NewFrame extends JFrame {
 			}
 		}
 
+		class InC implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				msg.setText(e.getActionCommand());
+			}
+		}
+
 		quitB.addActionListener(new QuitActionListener());
 		cPane.add(quitB);
 
@@ -59,6 +67,9 @@ class NewFrame extends JFrame {
 
 		msg = new JLabel("msg...");
 		cPane.add(msg);
+
+		helloB.addActionListener(new InC());
+		byeB.addActionListener(new InC());
 
 		// Show the frame.
 		this.setVisible(true);
