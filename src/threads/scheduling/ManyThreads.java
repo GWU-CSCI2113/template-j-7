@@ -33,7 +33,7 @@ public class ManyThreads implements Runnable {
 
 	public static void main(String[] args) {
 
-		int numIterations = 10;
+		int numIterations = 20;
 		int numThreads = 5;
 
 		for (int i = 0; i < numThreads; i++) {
